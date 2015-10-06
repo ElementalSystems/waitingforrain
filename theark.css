@@ -1,0 +1,89 @@
+.gamespace
+{
+  width: 100px;
+  height: 100px;  
+  background: #AAF;
+  position: fixed;
+  overflow: hidden;
+  transform-origin: 0% 0%;
+  font-family: 'Indie Flower', cursive;
+}
+
+.gamespace.active
+{
+  background: #DDF;
+  
+}
+
+.actionlist 
+{
+  z-index: 200;
+  position: absolute;
+  background: rgba(0,0,0,0.6);
+  color:#FFF;
+  padding:.5em;
+  overflow:hidden; 
+}
+
+.actionlist div
+{
+	padding:.5em;
+	border: 1px solid #FFF;
+	border-radius: 5px;
+	margin-bottom: .2em;
+}
+
+.gamespaceitem
+{
+   position: absolute;
+   background-size: 100% 100%;
+   padding: .5em;
+	
+}
+
+.gamespaceitem.qLabel
+{
+	background: rgba(200,200,200,0.2);
+	border-radius: .5em;
+	color: #000;
+	border: 1px solid #000;
+}
+
+.gamespaceitem.display
+{
+	background: rgba(200,170,150,0.8);
+	border-radius: .1em;
+	color: #000;
+	border: 1px solid #000;
+}
+
+.gamespaceitem.board
+{
+	color: rgba(255,255,255,.6);	
+}
+
+.cardholder {
+	position: fixed;
+	top:0; left:0; bottom:0; right:0;
+	z-index:100;
+	background: rgba(0,0,0,.7);    	
+    font-family: 'Indie Flower', cursive;
+}
+
+.cardmain {
+	margin: 1em;
+	background: #FDA;
+    border-radius: .5em;
+    padding:1em 1em 4em;	
+	max-width: 60em;
+	
+}
+
+.carddismiss {
+  background-image: url(wftr_art/cross.png);
+  background-size: 100% 100%;
+  width: 3em;
+  height: 3em;
+  float: left;
+}
+
