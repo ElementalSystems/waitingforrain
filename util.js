@@ -47,13 +47,26 @@ function inter(r,st,end,func)
 	return (r*end)+((1-r)*st);
 }
 
+
+
 //utility code for this game space
+function createBaseFunction(source)
+{
+	return new Function('g','d','c',source);
+}
+
+function createVoidFunction(source)
+{
+	if (source==null) return function(g,d,c) {};
+	return createBaseFunction(source)	
+}
+
 function createGenericFunction(source)
 {
 	var body=source;
 	if (body.charAt(0)!='{')  //we seem to not have a block a block so add an explicit return
 	  body="return "+body;
-	return new Function('g', 'd','c',body);
+	return createBaseFunction(body);
 }
 
 function createNFunction(source,defValue)

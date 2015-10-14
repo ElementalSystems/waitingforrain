@@ -1,0 +1,19 @@
+{
+   "name": "arkyard",
+   "content" :[
+      { "type":"image"
+	    "top": 0,
+		"bottom": 100,
+		"left": 0,
+		"right": 100,
+		"display" : "{ return displayMain()+1; }",
+        "transparency": 0				
+	  },
+	  { "type":"text"
+	    "top": 0,
+		"bottom": 10,
+		"display" : true,
+		"mdContent": "The Ark Yard: Day {game.time}"		
+	  }	  
+   ]
+}

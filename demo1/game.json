@@ -1,0 +1,20 @@
+{
+   "gameInit": {
+       "turn": 0,
+	   "people": ["moses","john"],
+       "res": {
+	     "wood": 0,
+	     "grain":  5,
+         "meat": 2	     
+       }	   
+   },  
+   "dataSources" {
+      "difficulty": {
+	      "easy": { "description": "Easy to Win", "mStart" : 200 },
+		  "medium": { "description": "Medium", "mStart" : 400 },
+	 	  "hard": { "description": "Hard", "mStart" : 400 }
+	  }
+   },
+   
+   initScript:  "g.turn=1; " 
+}

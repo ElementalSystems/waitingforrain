@@ -9,16 +9,18 @@ function calculateLayoutFrame(n)
 {
 	var w=window.innerWidth;
 	var h=window.innerHeight;
+	var mm=10;  //main window margin
+	var sm=5;  //small window margin
 	var xoff=0;
 	var yoff=0;
 	if (!n) n=1;	
 	//first work out the biggest square
 	layout_frame.portrait=(h>w);
 	if (layout_frame.portrait) {
-		layout_frame.mainSpace={left: 0, width: w, top:0, height:w };
+		layout_frame.mainSpace={left: mm, width: w-mm*2, top:mm, height:w-mm*2 };
 		yoff=w;		
 	} else {
-		layout_frame.mainSpace={left: 0, width: h, top:0, height:h };
+		layout_frame.mainSpace={left: mm, width: h-mm*2, top:mm, height:h-mm*2 };
 		xoff=h;
 	}
 	//now work out the biggest set of n squares we can fit in the rest of the space
@@ -39,7 +41,7 @@ function calculateLayoutFrame(n)
 	layout_frame.smallSpace=[];
 	for (var c=0;c<maxcol;c+=1)
 		for (var r=0;r<Math.ceil(n/maxcol);r+=1) {
-			var sp={left: xoff+c*maxsz, width: maxsz, top:yoff+r*maxsz, height:maxsz };
+			var sp={left: xoff+c*maxsz+sm, width: maxsz-sm*2, top:yoff+r*maxsz+sm, height:maxsz-sm*2 };
 			layout_frame.smallSpace.push(sp);
 		}
 	
@@ -112,10 +114,10 @@ var layoutManager={
 	selected: 0,
 	game: null,
 	actionListDisplay: null,
-	open: function(init) {
-		this.game=init;
-		for (var i=0;i<init.spaces.length;i+=1) 
-			this.addSpace(init.spaces[i]);
+	open: function(initGame) {
+		this.game=initGame;
+		for (var i=0;i<initGame.source.spaces.length;i+=1) 
+			this.addSpace(initGame.source.spaces[i]);
 		this.refresh();
 	},
 	addSpace: function(spaceInit) {
@@ -155,22 +157,25 @@ var layoutManager={
 			this.actionListDisplay=null;
 		}
 		if (listname) {
-			var list=this.game.actionLists[listname];		
+			var list=this.game.cardQ[listname];		
 			var ald=document.createElement('div');
 			setElementClass(ald,'actionlist');
 			
-			ald.style.left=el.offsetLeft+"px";
-			ald.style.top=(el.offsetTop+el.offsetHeight)+"px";		
 			//for every element in the list create a div
 			for (var i=0;i<list.length;i+=1) {
 			  var act=list[i];
 			  var cmd=document.createElement('div');
-			  cmd.innerHTML=act.title;
-			  cmd.onclick=createActionHandler(act.action);
+			  if (!act.display(this.game.state,0,act.context)) continue;
+			  cmd.innerHTML=act.title(this.game.state,0,act.context);
+			  cmd.onclick=createActionHandler(act);
 			  ald.appendChild(cmd);
 			}
 			document.body.appendChild(ald);		
 			var targeth=ald.offsetHeight;
+			ald.style.height=0;
+			ald.style.left=el.offsetLeft+"px";
+			ald.style.top=(el.offsetTop+el.offsetHeight)+"px";		
+			
 			callEachFrame(300,
 			   function(r) { ald.style.height=inter(r,0,targeth)+"px"; },
 			   null,

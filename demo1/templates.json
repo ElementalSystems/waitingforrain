@@ -1,0 +1,25 @@
+{ 
+  "event_templates": [
+    {
+	   "name": "start1",
+	   "class": "guide"
+	   "queuename": "angel"
+	   "priority" : 0
+	   "addif": [
+	     "g.turn==0"
+	   ],
+	   "card": {
+	      "title": "Introduction",		  
+	      "maintext":"Lots of marked up text here which may well include data like this {game.infostring}",
+		  "options": [
+		    {  
+			  "maintext":"Okay - I got it!",
+			  "conditions": [],
+			  "actionscript": "g.res.wood+=5;",			  
+			}			
+		  ]		  
+	   }
+	}
+  
+  ]
+}
