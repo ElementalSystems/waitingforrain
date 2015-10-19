@@ -44,8 +44,8 @@ function refreshCard()
 	//do the validations and enabling here
 	var error=null;
 	for (var i=0;i<this.source.validations.length;i+=1) 
-		if (this.source.validations[i].exp(this.source.game,0,this.source.context)) {
-			error=this.source.validations[i].error(this.source.game,0,this.source.context);
+		if (this.source.validations[i].exp(this.source.game.state,0,this.source.context)) {
+			error=this.source.validations[i].error(this.source.game.state,0,this.source.context);
 			break;
 		}
 		
@@ -60,7 +60,7 @@ function refreshCard()
 
 function refreshCardItem(crd,el)
 {
-	el.innerHTML=micromarkdown.parse(el.content(crd.source.game,0,crd.source.context));
+	el.innerHTML=micromarkdown.parse(el.content(crd.source.game.state,0,crd.source.context));
 	if ((el.behaviour=="check")||(el.behaviour=="radio")) {
 		if (crd.source.context[el.name]) setElementClass(el,"set");
 		else unsetElementClass(el,"set");
@@ -115,6 +115,7 @@ function createCard(source)
 	setElementClass(crd.accept,'cardaccept');
 	crd.accept.onclick=function(evt)
 	{
+		crd.source.onaccept(crd.source.game.state,0,crd.source.context);
 		crd.parentNode.removeChild(crd);
 	}	
 	
@@ -149,13 +150,20 @@ function openCard(root,cardsource)
 	return card;
 }
 
-function createCardInstance(gameL,cardName,param)
+function createCardInstance(gameL,param)
 {
 	var card={ 
-	  init: cards[cardName],
+	  init: cards[param.cardName],
 	  game: gameL  
 	};
+	card.init.context.cardName=param.cardName;
 	card.context=createShadowStore(card.init.context);
+	//copy custom init params into context
+	var keys=Object.getOwnPropertyNames(param);
+	for (var i=0;i<keys.length;i+=1) {
+		if (card.context.hasOwnProperty(keys[i])) card.context[keys[i]]=param[keys[i]];
+		else throw "Unknown context property "+keys[i];
+	}
 	card.title=createSFunction(card.init.title);
 	card.display=createNFunction(card.init.display,1);
 	card.urgent=createNFunction(card.init.urgent,1);

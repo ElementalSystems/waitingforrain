@@ -79,10 +79,10 @@ body {
 
 .gamespaceitem.display
 {
-	background: rgba(200,170,150,0.8);
-	border-radius: .1em;
+	background: rgba(255,255,255,0.4);
+	border-radius: .2em;
 	color: #000;
-	border: 1px solid #000;
+	
 }
 
 .gamespaceitem.board

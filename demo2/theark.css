@@ -1,0 +1,192 @@
+body {
+
+  background-image: url(wftr_art/back.jpg);
+  	background-size: 100%;
+  
+}
+
+.gamespace
+{
+  width: 100px;
+  height: 100px;  
+  background: #AAF;
+  background-size: 100%;
+  position: fixed;
+  overflow: hidden;
+  transform-origin: 0% 0%;
+  font-family: 'Indie Flower', cursive;
+  box-shadow: 5px 5px 5px #000;
+  perspective: 500px;
+  perspective-origin: 50% 15%;
+}
+
+.gamespace.active
+{
+  background: #DDF;
+  
+}
+
+.actionlist 
+{
+  
+  z-index: 200;
+  position: absolute;
+  background: rgba(0,0,0,0.6);
+  color:#FFF;
+  padding:.5em;
+  overflow:hidden; 
+}
+
+.actionlist div
+{
+	padding:.5em;
+	border: 1px solid #FFF;
+	border-radius: 5px;
+	margin-bottom: .2em;
+}
+
+.gamespaceitem
+{
+   position: absolute;
+   background-size: 100% 100%;
+   padding: .5em;
+	
+}
+
+.gamespaceitem h1
+{
+	margin:0px;	
+}
+
+.gamespaceitem h2
+{
+	margin:0px;	
+}
+
+.gamespaceitem h3
+{
+	margin:0px;	
+}
+
+
+.gamespaceitem.qLabel
+{
+	background: rgba(200,200,200,0.2);
+	border-radius: .5em;
+	color: #000;
+	border: 1px solid #000;
+}
+
+.gamespaceitem.display
+{
+	background: rgba(255,255,255,0.4);
+	border-radius: .2em;
+	color: #000;
+	
+}
+
+.gamespaceitem.board
+{
+	color: rgba(255,255,255,.6);	
+	background: rgba(0,64,0,0.4);
+	border-radius: 3px;
+	
+}
+
+.gamespaceitem.wdisplay
+{
+	color: #005;
+	background: rgba(255,255,255,0.6);
+	border-radius: 3px;
+	transform: rotateY(45deg);
+	transform-origin:0 0;
+	
+}
+
+.gamespaceitem.wdisplay table,th,td
+{
+	border-collapse: collapse;
+	border: 1px solid #CCC;
+}
+
+.cardholder {
+	position: fixed;
+	top:0; left:0; bottom:0; right:0;
+	z-index:100;
+	background: rgba(0,0,0,.7);    	
+    font-family: 'Indie Flower', cursive;
+}
+
+.cardmain {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	right: 1em;
+	bottom: 1em;
+	background: #FDA;
+    border-radius: .5em;
+    padding:1em;
+	
+}
+
+.cardcontent {
+	position: absolute;
+	top: 0em;
+	bottom: 5.5em;
+	right: 1em;
+	left: 1em;
+	overflow-y: auto;
+}
+
+.cardbar {
+	position: absolute;
+	bottom: .5em;
+	right: 1em;
+	left: 1em;
+	
+	
+	background: rgba(0,0,0,.1);	
+	height: 5em;  
+	border-radius: 1em;
+}
+.carddismiss {
+  background-image: url(wftr_art/cross.png);
+  background-size: 100% 100%;
+  width: 3em;
+  height: 3em;
+  float: left;
+  border: 2px rgba(128,128,128,.7) solid;
+  border-radius: .25em;
+  margin: 1em;
+}
+
+
+.cardaccept {
+  background-image: url(wftr_art/tick.png);
+  background-size: 100% 100%;
+  width: 3em;
+  height: 3em;
+  float: right;
+  border: 2px rgba(128,128,128,.7) solid;
+  border-radius: .25em;
+  margin: 1em;
+}
+
+.cardmessage {
+	font-size: 200%;
+}
+
+.carditem.option {
+  border: solid rgba(0,0,0,.2) 2px;
+  padding: .5em .5em .5em 4em;
+  background-image: url(wftr_art/box.png);
+  background-size: 2em 2em;
+  background-repeat: no-repeat;
+  background-position: .5em .5em;
+  margin-bottom: .5em;
+}
+
+.carditem.option.set {
+  border: solid rgba(0,0,0,.8) 2px;
+  background-image: url(wftr_art/boxcross.png);      
+}
